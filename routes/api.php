@@ -27,5 +27,5 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 Route::group(['middleware' => 'api', 'prefix' => 'stock'], function ($router) {
     Route::post('addStock', [StockController::class, 'storeproduct']);
     Route::get('getStock', [StockController::class, 'getallstock']);
-
+    Route::post("transformstock",[StockController::class,'transformstock']);
 });

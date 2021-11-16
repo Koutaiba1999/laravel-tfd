@@ -95,6 +95,7 @@ return [
             'host' => 'cluster0.abo4m.mongodb.net',
             'dsn' => 'mongodb+srv://koutaiba:29225034@cluster0.abo4m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
             'database' => 'myFirstDatabase',
+
             'username' => env('DB_USERNAME', 'homestead'),
             'password' => env('DB_PASSWORD', 'secret'),
             'options' => [
@@ -103,7 +104,6 @@ return [
 
                 'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'), // required with Mongo 3+
             ],
-
         ],
     ],
 
