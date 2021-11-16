@@ -104,7 +104,8 @@ class StockController extends Controller
         }
         $stock1->stock = $t;
         $stock2->stock = $t2;
-        echo "after " . $stock1;
-        echo "after2 " . $stock2;
+        $stock1->save();
+        $stock2->save();
+        return response()->json(['message' => 'Transformation effectué avec Succés'], 201);
     }
 }
