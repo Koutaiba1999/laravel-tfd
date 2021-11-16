@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::post('register', [UserController::class, 'store']);
     Route::post("login", [UserController::class, 'login']);
     Route::post('me', [UserController::class, 'me']);
+});
+Route::group(['middleware' => 'api', 'prefix' => 'stock'], function ($router) {
+    Route::post('addStock', [StockController::class, 'storeproduct']);
+    Route::get('getStock', [StockController::class, 'getallstock']);
+
 });
