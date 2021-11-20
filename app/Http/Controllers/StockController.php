@@ -8,18 +8,18 @@ use Illuminate\Support\Facades\Validator;
 
 class StockController extends Controller
 {
-    //
+    //il faut avoir du token pour utliser les apis
     public function __construct()
     {
         $this->middleware('auth:api');
     }
-
+    // cette fonction permet de sauvegarder un stock dans la base de données
     public function storeproduct(Request $request)
     {
         $v = Validator::make($request->all(), [
             'magasin' => 'required|max:255',
 
-            /*      'namecategory' => 'required|max:255',*/
+
 
 
             'stock' => 'required',
@@ -35,10 +35,7 @@ class StockController extends Controller
             ], 422);
         }
 
-        /*      $categroy = Category::where('name', $request->namecategory)->first();
-        $subcategory = Category::where('name', $request->namesubcategory)->first();*/
-        // $subcategory = Category::where("_id",$request->subcategory)->first();
-        // $category= $subcategory->parent_id ;
+
 
         $stock = new Stock();
         $stock->magasin = $request->magasin;
@@ -47,18 +44,22 @@ class StockController extends Controller
         $stock->save();
         return response()->json(['message' => 'data saved successfully'], 200);
     }
+
+    //cette fonction permet d 'avoir les stock de la base de données
     public function getallstock()
     {
         $stock = Stock::all();
         return response()->json(['stock' => $stock], 200);
     }
+
+    // cette fonction permet de faire la mise à jour de la base de données lors du transfert du stock
     public function transformstock(Request $request)
     {
         $v = Validator::make($request->all(), [
             'magasin1' => 'required|max:255',
             'magasin2' => 'required|max:255',
             'fruit' => 'required|max:255',
-            /*      'namecategory' => 'required|max:255',*/
+
 
 
             'nbretransorme' => 'required|int',

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-
+// ce controller contient le systéme d'authentification utilisateur jwt
 class UserController extends Controller
 {
     public function __construct()
@@ -15,6 +15,8 @@ class UserController extends Controller
         $this->middleware('auth:api', ['except' => ['login','store']]);
     }
 
+
+    //cette fonction permet de créer les comptes users
     public function store(Request $request)
     {
         $v = Validator::make($request->all(), [
@@ -43,7 +45,7 @@ class UserController extends Controller
         //Auth::login($user);
         return response()->json(['status' => 201, 'user' => $user]);
     }
-
+//la fonction login permet d avoir un token si l 'utilisateur est trouvé dans la base
     /**
      * Get a JWT via given credentials.
      *
@@ -59,7 +61,7 @@ class UserController extends Controller
 
         return $this->respondWithToken($token);
     }
-
+//la fonction me récupére les info de user
     /**
      * Get the authenticated User.
      *
